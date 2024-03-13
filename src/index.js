@@ -120,9 +120,11 @@ async function PlaceID_Resolver(PlaceID) {
     }).then(async (res) => {
         const responseJSON = (await res.json()).data
         return ({
-            "Name": responseJSON.title + ", " + responseJSON.fullAddress,
-            "Lat": responseJSON.lat,
-            "Lng": responseJSON.long
+            "name": responseJSON.title + ", " + responseJSON.fullAddress,
+            "coordinates": {
+                "lat": responseJSON.lat,
+                "lng": responseJSON.long
+            }
         })
     }));
 }
