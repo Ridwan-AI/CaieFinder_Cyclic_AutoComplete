@@ -37,7 +37,10 @@ fastify.get('/places', async (request, reply) => {
     }).then(async (res) => {
         const responseJSON = (await res.json()).data.candidates;
         // console.log(responseJSON);
-        return (responseJSON);
+        const results = responseJSON.map((item) => {
+            return (item.addressLine1 + ", " + item.addressLine2);
+        })
+        return (results);
     });
     reply.headers({
         "Access-Control-Allow-Origin": "*",
