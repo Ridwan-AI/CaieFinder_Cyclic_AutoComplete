@@ -1,5 +1,5 @@
 {
-  "name": "carfinder_switzerland",
+  "name": "carfinder_cyclic_autocomplete",
   "version": "1.0.1",
   "description": "No-cors autocomplete for google places based on Uber API",
   "main": "src/index.js",
