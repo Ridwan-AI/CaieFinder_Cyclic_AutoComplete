@@ -72,9 +72,8 @@ fastify.get('/places', async (request, reply) => {
         "method": "POST"
     }).then(async (res) => {
         const responseJSON = (await res.json()).data.candidates;
-        // console.log(responseJSON);
         const results = responseJSON.map((item) => {
-            return (item.addressLine1 + ", " + item.addressLine2);
+            return ({ "Name": item.addressLine1 + ", " + item.addressLine2, "ID": item.id });
         })
         return (results);
     });
