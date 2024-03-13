@@ -8,6 +8,9 @@ fastify.get('/', async (request, reply) => {
     return { hello: 'world' }
 })
 fastify.get('/routes', async (request, reply) => {
+    const Dest_Lat = request.query.destlat, Dest_Long = request.query.destlong;
+    const Origin_Lat = request.query.originlat, Origin_Long = request.query.originlong;
+
     const google_routes = (await fetch("https://m.uber.com/go/custom-api/navigation/route", {
         "headers": {
             "accept": "*/*",
@@ -24,7 +27,7 @@ fastify.get('/routes', async (request, reply) => {
             "x-csrf-token": "x",
             "cookie": "sid=QA.CAESEJaHp1r7VUithJ6_SEgyS9EYl8HjsAYiATEqJDZiOGUzOWIxLTQ1MGUtNDE3Zi05YzMxLTc4OWMwYTlkNGY0MDI8MqHYXTXy7AE6X4Q3O5BAGcjVkS-etWsi6urdFX55UzRfBNjrkpZwUwZvvMXF8X1ciT5R582zQ6hTTsyBOgExQgh1YmVyLmNvbQ.uxdOAwMTT3ObRNV5Zs6sNIXMep83qPHfLoNE4pnsedk; csid=1.1712906391743.NrpKgRnQLukzqPFL/UFTh0LdC4frCuPbHSjOrY/bwhU=",
         },
-        "body": "{\"destinations\":[{\"latitude\":23.7333191,\"longitude\":90.4265487}],\"origin\":{\"latitude\":23.753838,\"longitude\":90.370846}}",
+        "body": `{"destinations":[{"latitude":${Dest_Lat},"longitude":${Dest_Long}}],"origin":{"latitude":${Origin_Lat},"longitude":${Origin_Long}}}`,
         "method": "POST"
     }).then(async (res) => {
         const responseJSON = (await res.json());
