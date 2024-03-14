@@ -119,13 +119,14 @@ async function PlaceID_Resolver(PlaceID) {
         "method": "POST"
     }).then(async (res) => {
         const responseJSON = (await res.json()).data
-        return ({
-            "name": responseJSON.title + ", " + responseJSON.fullAddress,
-            "coordinates": {
-                "lat": responseJSON.lat,
-                "lng": responseJSON.long
-            }
-        })
+        // return ({
+        //     "name": responseJSON.title + ", " + responseJSON.fullAddress,
+        //     "coordinates": {
+        //         "lat": responseJSON.lat,
+        //         "lng": responseJSON.long
+        //     }
+        // })
+        return (responseJSON.title + ", " + responseJSON.fullAddress)
     }));
 }
 
